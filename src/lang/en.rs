@@ -460,7 +460,7 @@ mod tests {
     #[bench]
     fn bench_stem(b: &mut test::Bencher) {
         let text = include_str!("../../tests/data/en.in.txt");
-        let tokens = ::pipeline::tokenize(text);
+        let tokens = crate::pipeline::tokenize(text);
         b.iter(|| {
             let tokens = tokens.clone();
             for token in tokens {
