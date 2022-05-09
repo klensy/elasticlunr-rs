@@ -194,24 +194,21 @@ impl Stemmer {
             w.insert(0, 'Y');
         }
 
-        // TODO: There's probably a better way to handle the
-        // borrowchecker than cloning w a million times
-
         // Step 1a
-        if let Some(caps) = self.re_1a.captures(&w.clone()) {
+        if let Some(caps) = self.re_1a.captures(&w) {
             w = concat_string(&[&caps[1], &caps[2]]);
         }
-        if let Some(caps) = self.re2_1a.captures(&w.clone()) {
+        if let Some(caps) = self.re2_1a.captures(&w) {
             w = concat_string(&[&caps[1], &caps[2]]);
         }
 
         // Step 1b
-        if let Some(caps) = self.re_1b.captures(&w.clone()) {
+        if let Some(caps) = self.re_1b.captures(&w) {
             let stem = &caps[1];
             if self.re_mgr0.is_match(stem) {
                 w.pop();
             }
-        } else if let Some(caps) = self.re2_1b.captures(&w.clone()) {
+        } else if let Some(caps) = self.re2_1b.captures(&w) {
             let stem = &caps[1];
             if self.re_s_v.is_match(stem) {
                 w = stem.into();
@@ -220,7 +217,7 @@ impl Stemmer {
 
                 if self.re2_1b_2.is_match(&w) {
                     w.push('e');
-                } else if let Some(m) = self.re3_1b_2.find(&w.clone()) {
+                } else if let Some(m) = self.re3_1b_2.find(&w) {
                     let mut suffix = m.as_str().chars();
                     // Make sure the two characters are the same since we can't use backreferences
                     if suffix.next() == suffix.next() {
@@ -239,13 +236,13 @@ impl Stemmer {
 
         // Step 1c - replace suffix y or Y by i if preceded by a non-vowel which is not the first
         // letter of the word (so cry -> cri, by -> by, say -> say)
-        if let Some(caps) = self.re_1c.captures(&w.clone()) {
+        if let Some(caps) = self.re_1c.captures(&w) {
             let stem = &caps[1];
             w = concat_string(&[stem, "i"]);
         }
 
         // Step 2
-        if let Some(caps) = self.re_2.captures(&w.clone()) {
+        if let Some(caps) = self.re_2.captures(&w) {
             let stem = &caps[1];
             let suffix = &caps[2];
             if self.re_mgr0.is_match(stem) {
@@ -254,7 +251,7 @@ impl Stemmer {
         }
 
         // Step 3
-        if let Some(caps) = self.re_3.captures(&w.clone()) {
+        if let Some(caps) = self.re_3.captures(&w) {
             let stem = &caps[1];
             let suffix = &caps[2];
             if self.re_mgr0.is_match(stem) {
@@ -263,12 +260,12 @@ impl Stemmer {
         }
 
         // Step 4
-        if let Some(caps) = self.re_4.captures(&w.clone()) {
+        if let Some(caps) = self.re_4.captures(&w) {
             let stem = &caps[1];
             if self.re_mgr1.is_match(stem) {
                 w = stem.into();
             }
-        } else if let Some(caps) = self.re2_4.captures(&w.clone()) {
+        } else if let Some(caps) = self.re2_4.captures(&w) {
             let stem = concat_string(&[&caps[1], &caps[2]]);
             if self.re_mgr1.is_match(&stem) {
                 w = stem;
@@ -276,7 +273,7 @@ impl Stemmer {
         }
 
         // Step 5
-        if let Some(caps) = self.re_5.captures(&w.clone()) {
+        if let Some(caps) = self.re_5.captures(&w) {
             let stem = &caps[1];
             if self.re_mgr1.is_match(stem)
                 || (self.re_meq1.is_match(stem) && !(self.re3_5.is_match(stem)))
