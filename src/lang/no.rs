@@ -18,6 +18,7 @@ make_trimmer!(
     \\uFF3A\\uFF41-\\uFF5A"
 );
 
+#[rustfmt::skip]
 make_stop_word_filter!([
     "", "alle", "at", "av", "bare", "begge", "ble", "blei", "bli", "blir", "blitt", "både", "båe",
     "da", "de", "deg", "dei", "deim", "deira", "deires", "dem", "den", "denne", "der", "dere",
