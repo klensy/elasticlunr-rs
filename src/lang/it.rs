@@ -1,4 +1,4 @@
-use pipeline::Pipeline;
+use crate::Pipeline;
 
 pub fn make_pipeline() -> Pipeline {
     Pipeline {

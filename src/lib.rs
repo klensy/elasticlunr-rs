@@ -155,7 +155,7 @@ impl IndexBuilder {
             ref_field: self.ref_field,
             document_store: DocumentStore::new(self.save),
             pipeline: self.pipeline.unwrap_or_default(),
-            version: ::ELASTICLUNR_VERSION,
+            version: ELASTICLUNR_VERSION,
             lang: Language::English,
         }
     }
@@ -233,7 +233,7 @@ impl Index {
             index: indices,
             pipeline: lang.make_pipeline(),
             ref_field: "id".into(),
-            version: ::ELASTICLUNR_VERSION,
+            version: ELASTICLUNR_VERSION,
             document_store: DocumentStore::new(true),
             lang: lang,
         }

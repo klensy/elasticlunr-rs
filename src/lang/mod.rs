@@ -1,6 +1,7 @@
 //! Intended to be compatible with <https://github.com/MihaiValentin/lunr-languages>. Each supported
 //! language has a trimmer, a stop word filter, and a stemmer. Most users will not need to use
 //! these modules directly.
+use crate::Pipeline;
 
 #[allow(unused_macros)]
 macro_rules! make_trimmer {
@@ -187,39 +188,39 @@ impl Language {
     }
 
     /// Creates a pipeline for the [`Language`](../lang/enum.Language.html).
-    pub fn make_pipeline(&self) -> ::pipeline::Pipeline {
+    pub fn make_pipeline(&self) -> Pipeline {
         match *self {
-            Language::English => ::lang::en::make_pipeline(),
+            Language::English => en::make_pipeline(),
             #[cfg(feature = "da")]
-            Language::Danish => ::lang::da::make_pipeline(),
+            Language::Danish => da::make_pipeline(),
             #[cfg(feature = "no")]
-            Language::Norwegian => ::lang::no::make_pipeline(),
+            Language::Norwegian => no::make_pipeline(),
             #[cfg(feature = "du")]
-            Language::Dutch => ::lang::du::make_pipeline(),
+            Language::Dutch => du::make_pipeline(),
             #[cfg(feature = "fi")]
-            Language::Finnish => ::lang::fi::make_pipeline(),
+            Language::Finnish => fi::make_pipeline(),
             #[cfg(feature = "fr")]
-            Language::French => ::lang::fr::make_pipeline(),
+            Language::French => fr::make_pipeline(),
             #[cfg(feature = "de")]
-            Language::German => ::lang::de::make_pipeline(),
+            Language::German => de::make_pipeline(),
             #[cfg(feature = "it")]
-            Language::Italian => ::lang::it::make_pipeline(),
+            Language::Italian => it::make_pipeline(),
             #[cfg(feature = "pt")]
-            Language::Portuguese => ::lang::pt::make_pipeline(),
+            Language::Portuguese => pt::make_pipeline(),
             #[cfg(feature = "ro")]
-            Language::Romanian => ::lang::ro::make_pipeline(),
+            Language::Romanian => ro::make_pipeline(),
             #[cfg(feature = "ru")]
-            Language::Russian => ::lang::ru::make_pipeline(),
+            Language::Russian => ru::make_pipeline(),
             #[cfg(feature = "es")]
-            Language::Spanish => ::lang::es::make_pipeline(),
+            Language::Spanish => es::make_pipeline(),
             #[cfg(feature = "sv")]
-            Language::Swedish => ::lang::sv::make_pipeline(),
+            Language::Swedish => sv::make_pipeline(),
             #[cfg(feature = "tr")]
-            Language::Turkish => ::lang::tr::make_pipeline(),
+            Language::Turkish => tr::make_pipeline(),
             #[cfg(feature = "zh")]
-            Language::Chinese => ::lang::zh::make_pipeline(),
+            Language::Chinese => zh::make_pipeline(),
             #[cfg(feature = "ja")]
-            Language::Japanese => ::lang::ja::make_pipeline(),
+            Language::Japanese => ja::make_pipeline(),
             _ => panic!("Dont use the `__NonExhaustive` variant!"),
         }
     }
