@@ -2,7 +2,7 @@
 //! language has a trimmer, a stop word filter, and a stemmer. Most users will not need to use
 //! these modules directly.
 use crate::Pipeline;
-
+use serde::{Deserialize, Serialize};
 #[allow(unused_macros)]
 macro_rules! make_trimmer {
     ($reg:expr) => {

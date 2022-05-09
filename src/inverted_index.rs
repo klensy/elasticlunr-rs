@@ -1,7 +1,7 @@
 //! Implements an elasticlunr.js inverted index. Most users do not need to use this module directly.
 
+use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
-
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq)]
 struct TermFrequency {
     #[serde(rename = "tf")]

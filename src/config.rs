@@ -5,6 +5,7 @@
 //! *Reference:*
 //! <http://elasticlunr.com/docs/configuration.js.html>
 
+use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
 /// Used to set the search configuration for a specific field.
