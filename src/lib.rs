@@ -235,7 +235,7 @@ impl Index {
             ref_field: "id".into(),
             version: ELASTICLUNR_VERSION,
             document_store: DocumentStore::new(true),
-            lang: lang,
+            lang,
         }
     }
 
