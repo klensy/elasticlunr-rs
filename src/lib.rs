@@ -342,7 +342,7 @@ impl Index {
 
                 self.index
                     .get_mut(field)
-                    .expect(&format!("InvertedIndex does not exist for field {}", field))
+                    .unwrap_or_else(|| panic!("InvertedIndex does not exist for field {}", field))
                     .add_token(doc_ref, token, freq);
             }
         }
